@@ -4,8 +4,6 @@ L'objectif de ce TP est de conteneuriser l'application Todolist avec Docker.
 
 Todolist est une application de gestion des tâches utilisant Node.js et PostgreSQL.
 
-## Exercice 1 : Todolist via Docker uniquement
-
 1. Créer un réseau Docker appelé `todolist`. Ce réseau devra être de type `bridge`.
 
     ```shell
