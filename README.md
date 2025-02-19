@@ -1,4 +1,4 @@
-# Docker | TP #3 : Conteneuriser une application distribuée
+# Docker | Examen final : Conteneuriser une application distribuée
 
 L'objectif de ce TP est de conteneuriser l'application Todolist avec Docker.
 
