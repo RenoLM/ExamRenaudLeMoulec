@@ -7,13 +7,13 @@ Todolist est une application de gestion des tâches utilisant Node.js et Postgre
 1. Créer un réseau Docker appelé `todolist`. Ce réseau devra être de type `bridge`.
 
     ```shell
-    # FIXME: écrire la commande ici
+    docker network create todolist
     ```
 
 2. Créer un volume Docker appelé `todolist-dbdata`.
 
     ```shell
-    # FIXME: écrire la commande ici
+    docker volume create todolist-dbdata
     ```
 
 3. Créer et démarrer un conteneur de base de données. Le conteneur devra avoir les caractéristiques suivantes :
@@ -29,7 +29,7 @@ Todolist est une application de gestion des tâches utilisant Node.js et Postgre
     - Le conteneur devra s'exécuter en arrière-plan.
 
     ```shell
-    # FIXME: écrire la commande ici
+    docker run -v todolist-dbdata:/var/lib/postgresql/data --network todolist -e POSTGRES_DB=todolist -e POSTGRES_USER=todo-user -e POSTGRES_PASSWORD=todo-secret -d --name todolist-db -p "5432:5432" postgres:17-alpine
     ```
 
 4. Écrire un `Dockerfile` permettant de conteneuriser l'application Todolist. Ce `Dockerfile` devra exécuter les instructions suivantes pour construire l'image :
@@ -51,7 +51,7 @@ Todolist est une application de gestion des tâches utilisant Node.js et Postgre
 6. Construire l'image à l'aide du `Dockerfile` nouvellement créé. L'image devra être taguée avec `<username>/todolist:latest` (Remplacer `<username>` par votre nom d'utilisateur Docker Hub).
 
     ```shell
-    # FIXME: écrire la commande ici
+    docker build -t renauo/todolist:latest .
     ```
 
 7. Créer et démarrer un nouveau conteneur applicatif. Le conteneur devra avoir les caractéristiques suivantes :
@@ -64,7 +64,7 @@ Todolist est une application de gestion des tâches utilisant Node.js et Postgre
     - Le conteneur devra s'exécuter en arrière-plan.
 
     ```shell
-    # FIXME: écrire la commande ici
+    docker run --network todolist -e DATABASE_URL=postgresql://todo-user:todo-secret@todolist-db:5432/todolist?schema=public -p "8123:4173" -d renauo/todolist:latest
     ```
 
 8. Vérifier le bon fonctionnement de l'application en écrivant ci-dessous le code secret affiché sur le site.
@@ -78,37 +78,38 @@ Todolist est une application de gestion des tâches utilisant Node.js et Postgre
     Arrêtez le conteneur `todolist-app`.
 
     ```shell
-    # FIXME: écrire la commande ici
+    docker stop todolist-app
     ```
 
 10. Arrêtez le conteneur `todolist-db`.
 
     ```shell
-    # FIXME: écrire la commande ici
+    docker stop todolist-db
     ```
 
 11. Supprimez tous les conteneurs non utilisés sur votre machine.
 
     ```shell
-    # FIXME: écrire la commande ici
+    docker rm todolist-db ; docker rm todolist-app
     ```
 
 12. Supprimez le volume `todolist-dbdata`.
 
     ```shell
-    # FIXME: écrire la commande ici
+    docker rm -v todolist-dbdata
     ```
 
 13. Supprimez le réseau `todolist`.
 
     ```shell
-    # FIXME: écrire la commande ici
+    docker network rm todolist
     ```
 
 14. ⭐ **Bonus :** Pousser tous les tags de votre image sur votre repository Docker Hub.
 
     ```shell
-    # FIXME: écrire la commande ici
+    docker push renauo/todolist-app
+
     ```
 
 Bon courage !
